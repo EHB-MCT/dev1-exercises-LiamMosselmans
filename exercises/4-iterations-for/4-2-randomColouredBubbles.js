@@ -19,8 +19,8 @@ function drawCircles() {
         let marginWidth = width - (2 * margin);
         let marginHeight = height - (2 * margin);
 
-        let circlePositionX = Math.floor(Math.random() * marginWidth) + margin;
-        let circlePositionY = Math.floor(Math.random() * marginHeight) + margin;
+        let circlePositionX = margin + Math.random() * marginWidth;
+        let circlePositionY = margin + Math.random() * marginHeight;
 
         let h = Math.floor(Math.random() * 361);
         let s = Math.floor(Math.random() * 101);
