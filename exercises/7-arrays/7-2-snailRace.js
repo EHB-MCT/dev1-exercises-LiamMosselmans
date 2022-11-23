@@ -6,7 +6,8 @@ import * as Utils from "../../scripts/utils.js";
 let width = context.canvas.width;
 let height = context.canvas.height;
 
-
+let snailXPos = [100, 100, 100, 100, 100];
+ 
 
 setup();
 draw();
@@ -17,7 +18,10 @@ function setup() {
 }
 
 function draw() {
+    let isMoving = true;
     let space = height / 5;
+    let snailWidth = 144;
+
     for (let i = 0; i < 5; i++) {
         if (i % 2 == 0) {
             context.fillStyle = 'grey';
@@ -27,14 +31,20 @@ function draw() {
         drawLane(0, i * space, width, (i * space) + space);
     }
     for (let i = 0; i < 5; i++) {
-        drawSnail(space / 2, space / 2 + i * space, space, i + 1);
+        let speed = Utils.randomNumber(1,5);
+        snailXPos[i] += speed;
+        drawSnail(snailXPos[i], space / 2 + i * space, space, i + 1);
+        if (snailXPos[i] + snailWidth >= width) {
+            isMoving = false;
+            context.fillText("Snail " + (i + 1) + " has won!", width / 2, (space / 2) + (i * space) + 20);
+        } 
     }
-
-    requestAnimationFrame(draw);
+    if (isMoving == true) {
+        requestAnimationFrame(draw);
+    }
 }
 
 function drawSnail(x, y, sizeY, number) {
-
     let sizeDiff = sizeY / 4 / 5;
     context.beginPath();
     context.fillStyle = "green";
