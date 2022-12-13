@@ -8,15 +8,12 @@ let height = context.canvas.height;
 
 window.onmousemove = drawCrosshair;
 
-drawCrosshair();
-
 /**
 * @param {MouseEvent} eventData
 **/
 function drawCrosshair(eventData) {
-    context.fillStyle = "white";
+    context.fillStyle = 'white';
     context.fillRect(0, 0, width, height);
-
     context.strokeStyle = "red";
     context.lineWidth = 5;
     Utils.drawLine(eventData.pageX, 0, eventData.pageX, height);
